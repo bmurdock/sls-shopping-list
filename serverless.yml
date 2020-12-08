@@ -110,4 +110,4 @@ custom:
   bucket: shopping-list-bucket
   scripts:
     hooks:
-      'deploy:finalize': sls invoke -f sendText --path init.json && sls invoke -f s3put --path startlist.json
+      'deploy:finalize': sls invoke -f sendText --path init.json

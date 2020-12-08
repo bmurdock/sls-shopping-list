@@ -8,6 +8,7 @@ module.exports.receiveText = async (event, context, callback) => {
 		const parts = command.trim().split(' ');
 		switch (parts[0].toUpperCase()) {
 			case 'LIST':
+                console.log("Should list shopping items");
 				const data = await fetch(`${base}/shopping`).then((res) => {
 					return res.json();
 				});

@@ -17,19 +17,21 @@ module.exports.put = (event, context, callback) => {
         console.log('data: ', data);
         s3.putObject({
             Bucket: process.env.BUCKET,
-            Key: 'test.json',
+            Key: 'list.json',
             Body: data,
             ContentType: 'application/json; charset=utf-8',
+            ACL: 'public-read',
         },function(err, data) {
-            if (err) callback(err, err.stack); // an error occurred
-            else callback(null,data); // successful response
-            /*
-            data = {
-             ETag: "\"6805f2cfc46c0f04559748bb039d69ae\"", 
-             VersionId: "tpf3zF08nBplQK1XLOefGskR7mGDwcDk"
+            if (err)
+            {
+                console.log('Error occurred with s3 upload: ', err, err.stack);
+                callback(err, err.stack);
             }
-            */
+            else
+            {
+                console.log('S3 upload success: ', data);
+                callback(null,data);
+            }
         });
-
     });
 }

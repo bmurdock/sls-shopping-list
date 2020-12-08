@@ -10,6 +10,7 @@ provider:
     TWILIO_SID: AC606592bd99432da0da33e8c41dddf976
     TWILIO_AUTH: 4c699ee06c9d1923313c5e5d4f7c02cd
     TWILIO_PHONE: 12512774931
+    URL: { "Fn::Join" : ["", [" https://", { "Ref" : "ApiGatewayRestApi" }, ".execute-api.${self:custom.region}.amazonaws.com/${self:custom.stage}" ] ]  }
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -19,11 +20,13 @@ provider:
         - dynamodb:PutItem
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE}"
+    - Effect: Allow
+      Action:
         - s3:PutObject
+        - s3:PutObjectAcl
         - s3:GetObject
-      Resource: 
-        - "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE}"
-        - "arn:aws:s3:::${self:custom.bucket}/*"
+      Resource: "arn:aws:s3:::${self:custom.bucket}/*"
 functions:
   sendText:
     handler: twilio/sendText.sendText
@@ -55,6 +58,13 @@ functions:
           method: get
           cors: true
 
+  clear:
+    handler: shopping/clear.clear
+    events:
+      - http:
+          path: clear
+          method: post
+          cors: true
   read:
     handler: shopping/read.read
     events:
@@ -78,6 +88,17 @@ functions:
           path: shopping/{id}
           method: delete
           cors: true
+
+  import:
+    handler: shopping/import.import
+    environment:
+      BUCKET: ${self:custom.bucket}
+    events:
+      - http:
+          path: shopping/import
+          method: get
+          cors: true
+
   s3put:
     handler: s3/put.put
     environment:
@@ -107,7 +128,9 @@ resources:
 plugins:
   - serverless-plugin-scripts
 custom:
-  bucket: shopping-list-bucket
+  bucket: sls-shopping-list
+  stage: ${opt:stage, self:provider.stage}
+  region: ${opt:region, self:provider.region}
   scripts:
     hooks:
-      'deploy:finalize': sls invoke -f sendText --path init.json
+      'deploy:finalize': sh init.sh

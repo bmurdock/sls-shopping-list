@@ -95,6 +95,12 @@
         "LogGroupName": "/aws/lambda/sls-shopping-list-dev-list"
       }
     },
+    "ClearLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/sls-shopping-list-dev-clear"
+      }
+    },
     "ReadLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
@@ -111,6 +117,12 @@
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
         "LogGroupName": "/aws/lambda/sls-shopping-list-dev-delete"
+      }
+    },
+    "ImportLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/sls-shopping-list-dev-import"
       }
     },
     "S3putLogGroup": {
@@ -184,14 +196,18 @@
                     "dynamodb:GetItem",
                     "dynamodb:PutItem",
                     "dynamodb:UpdateItem",
-                    "dynamodb:DeleteItem",
+                    "dynamodb:DeleteItem"
+                  ],
+                  "Resource": "arn:aws:dynamodb:us-east-1:*:table/dev-sls-shopping-list"
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
                     "s3:PutObject",
+                    "s3:PutObjectAcl",
                     "s3:GetObject"
                   ],
-                  "Resource": [
-                    "arn:aws:dynamodb:us-east-1:*:table/dev-sls-shopping-list",
-                    "arn:aws:s3:::shopping-list-bucket/*"
-                  ]
+                  "Resource": "arn:aws:s3:::sls-shopping-list/*"
                 }
               ]
             }
@@ -220,7 +236,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/sls-shopping-list/dev/1607385868319-2020-12-08T00:04:28.319Z/sls-shopping-list.zip"
+          "S3Key": "serverless/sls-shopping-list/dev/1607412940879-2020-12-08T07:35:40.879Z/sls-shopping-list.zip"
         },
         "Handler": "twilio/sendText.sendText",
         "Runtime": "nodejs12.x",
@@ -232,7 +248,19 @@
             "DYNAMODB_TABLE": "dev-sls-shopping-list",
             "TWILIO_SID": "AC606592bd99432da0da33e8c41dddf976",
             "TWILIO_AUTH": "4c699ee06c9d1923313c5e5d4f7c02cd",
-            "TWILIO_PHONE": "12512774931"
+            "TWILIO_PHONE": "12512774931",
+            "URL": {
+              "Fn::Join": [
+                "",
+                [
+                  " https://",
+                  {
+                    "Ref": "ApiGatewayRestApi"
+                  },
+                  ".execute-api.us-east-1.amazonaws.com/dev"
+                ]
+              ]
+            }
           }
         },
         "Role": {
@@ -246,14 +274,14 @@
         "SendTextLogGroup"
       ]
     },
-    "SendTextLambdaVersionsxY7JMcdYnM4bLaCJu3smz6R7Wqkq5SmWJuZcKLBDw": {
+    "SendTextLambdaVersion1bbwlL2mxXMGqkko3W7zxNQRZMktlbM35jKXH64": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "SendTextLambdaFunction"
         },
-        "CodeSha256": "wH9IsYxSW1M4SL1fUQIFa5kwhO34+FwcaNm/t7VZmGs="
+        "CodeSha256": "QrGr1jkB8I19J5S2cI2Vj7nP29cYK5JG3SegozUglxo="
       }
     },
     "ReceiveTextLambdaFunction": {
@@ -263,7 +291,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/sls-shopping-list/dev/1607385868319-2020-12-08T00:04:28.319Z/sls-shopping-list.zip"
+          "S3Key": "serverless/sls-shopping-list/dev/1607412940879-2020-12-08T07:35:40.879Z/sls-shopping-list.zip"
         },
         "Handler": "twilio/receiveText.receiveText",
         "Runtime": "nodejs12.x",
@@ -275,7 +303,19 @@
             "DYNAMODB_TABLE": "dev-sls-shopping-list",
             "TWILIO_SID": "AC606592bd99432da0da33e8c41dddf976",
             "TWILIO_AUTH": "4c699ee06c9d1923313c5e5d4f7c02cd",
-            "TWILIO_PHONE": "12512774931"
+            "TWILIO_PHONE": "12512774931",
+            "URL": {
+              "Fn::Join": [
+                "",
+                [
+                  " https://",
+                  {
+                    "Ref": "ApiGatewayRestApi"
+                  },
+                  ".execute-api.us-east-1.amazonaws.com/dev"
+                ]
+              ]
+            }
           }
         },
         "Role": {
@@ -289,14 +329,14 @@
         "ReceiveTextLogGroup"
       ]
     },
-    "ReceiveTextLambdaVersionpQQGJWpDv7mQdh57TRsLSsvFK7PM55Mu8nVhlCOI": {
+    "ReceiveTextLambdaVersion9QxcyCpfRc1HAMk2s4ivf2bnecKafPkkw9bevd8": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ReceiveTextLambdaFunction"
         },
-        "CodeSha256": "wH9IsYxSW1M4SL1fUQIFa5kwhO34+FwcaNm/t7VZmGs="
+        "CodeSha256": "QrGr1jkB8I19J5S2cI2Vj7nP29cYK5JG3SegozUglxo="
       }
     },
     "CreateLambdaFunction": {
@@ -306,7 +346,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/sls-shopping-list/dev/1607385868319-2020-12-08T00:04:28.319Z/sls-shopping-list.zip"
+          "S3Key": "serverless/sls-shopping-list/dev/1607412940879-2020-12-08T07:35:40.879Z/sls-shopping-list.zip"
         },
         "Handler": "shopping/create.create",
         "Runtime": "nodejs12.x",
@@ -318,7 +358,19 @@
             "DYNAMODB_TABLE": "dev-sls-shopping-list",
             "TWILIO_SID": "AC606592bd99432da0da33e8c41dddf976",
             "TWILIO_AUTH": "4c699ee06c9d1923313c5e5d4f7c02cd",
-            "TWILIO_PHONE": "12512774931"
+            "TWILIO_PHONE": "12512774931",
+            "URL": {
+              "Fn::Join": [
+                "",
+                [
+                  " https://",
+                  {
+                    "Ref": "ApiGatewayRestApi"
+                  },
+                  ".execute-api.us-east-1.amazonaws.com/dev"
+                ]
+              ]
+            }
           }
         },
         "Role": {
@@ -332,14 +384,14 @@
         "CreateLogGroup"
       ]
     },
-    "CreateLambdaVersionJv14er5FMey8ddD5Hby5P04yUL6l8oLdF8e4tCUR4": {
+    "CreateLambdaVersion6YiVy1NgrfVxLarXqfX0VLRgVRhz3T1gpk596q2JVk": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "CreateLambdaFunction"
         },
-        "CodeSha256": "wH9IsYxSW1M4SL1fUQIFa5kwhO34+FwcaNm/t7VZmGs="
+        "CodeSha256": "QrGr1jkB8I19J5S2cI2Vj7nP29cYK5JG3SegozUglxo="
       }
     },
     "ListLambdaFunction": {
@@ -349,7 +401,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/sls-shopping-list/dev/1607385868319-2020-12-08T00:04:28.319Z/sls-shopping-list.zip"
+          "S3Key": "serverless/sls-shopping-list/dev/1607412940879-2020-12-08T07:35:40.879Z/sls-shopping-list.zip"
         },
         "Handler": "shopping/list.list",
         "Runtime": "nodejs12.x",
@@ -361,7 +413,19 @@
             "DYNAMODB_TABLE": "dev-sls-shopping-list",
             "TWILIO_SID": "AC606592bd99432da0da33e8c41dddf976",
             "TWILIO_AUTH": "4c699ee06c9d1923313c5e5d4f7c02cd",
-            "TWILIO_PHONE": "12512774931"
+            "TWILIO_PHONE": "12512774931",
+            "URL": {
+              "Fn::Join": [
+                "",
+                [
+                  " https://",
+                  {
+                    "Ref": "ApiGatewayRestApi"
+                  },
+                  ".execute-api.us-east-1.amazonaws.com/dev"
+                ]
+              ]
+            }
           }
         },
         "Role": {
@@ -375,14 +439,69 @@
         "ListLogGroup"
       ]
     },
-    "ListLambdaVersionqLH2GRTWJPAkIKGSYJsA3F3BBwI9Lz8wI6XQW0bfc": {
+    "ListLambdaVersionSw2Td4dFU2BLBkgW9GQrZcYChZ2X2hH2k3ahKPQiXnc": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ListLambdaFunction"
         },
-        "CodeSha256": "wH9IsYxSW1M4SL1fUQIFa5kwhO34+FwcaNm/t7VZmGs="
+        "CodeSha256": "QrGr1jkB8I19J5S2cI2Vj7nP29cYK5JG3SegozUglxo="
+      }
+    },
+    "ClearLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "S3Key": "serverless/sls-shopping-list/dev/1607412940879-2020-12-08T07:35:40.879Z/sls-shopping-list.zip"
+        },
+        "Handler": "shopping/clear.clear",
+        "Runtime": "nodejs12.x",
+        "FunctionName": "sls-shopping-list-dev-clear",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Environment": {
+          "Variables": {
+            "DYNAMODB_TABLE": "dev-sls-shopping-list",
+            "TWILIO_SID": "AC606592bd99432da0da33e8c41dddf976",
+            "TWILIO_AUTH": "4c699ee06c9d1923313c5e5d4f7c02cd",
+            "TWILIO_PHONE": "12512774931",
+            "URL": {
+              "Fn::Join": [
+                "",
+                [
+                  " https://",
+                  {
+                    "Ref": "ApiGatewayRestApi"
+                  },
+                  ".execute-api.us-east-1.amazonaws.com/dev"
+                ]
+              ]
+            }
+          }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "ClearLogGroup"
+      ]
+    },
+    "ClearLambdaVersionOEK8sIPNsB4dNhZt3hoU87n4D9B6TgTxLvrguyWQnw": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "ClearLambdaFunction"
+        },
+        "CodeSha256": "QrGr1jkB8I19J5S2cI2Vj7nP29cYK5JG3SegozUglxo="
       }
     },
     "ReadLambdaFunction": {
@@ -392,7 +511,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/sls-shopping-list/dev/1607385868319-2020-12-08T00:04:28.319Z/sls-shopping-list.zip"
+          "S3Key": "serverless/sls-shopping-list/dev/1607412940879-2020-12-08T07:35:40.879Z/sls-shopping-list.zip"
         },
         "Handler": "shopping/read.read",
         "Runtime": "nodejs12.x",
@@ -404,7 +523,19 @@
             "DYNAMODB_TABLE": "dev-sls-shopping-list",
             "TWILIO_SID": "AC606592bd99432da0da33e8c41dddf976",
             "TWILIO_AUTH": "4c699ee06c9d1923313c5e5d4f7c02cd",
-            "TWILIO_PHONE": "12512774931"
+            "TWILIO_PHONE": "12512774931",
+            "URL": {
+              "Fn::Join": [
+                "",
+                [
+                  " https://",
+                  {
+                    "Ref": "ApiGatewayRestApi"
+                  },
+                  ".execute-api.us-east-1.amazonaws.com/dev"
+                ]
+              ]
+            }
           }
         },
         "Role": {
@@ -418,14 +549,14 @@
         "ReadLogGroup"
       ]
     },
-    "ReadLambdaVersionBdcCULISRpANrIs8pK87QCM3j3xgq2K8Utn8VNBpapk": {
+    "ReadLambdaVersionCaqQga4nRMdGhEGOpIh3gWj35HDbfac9gfyR2iHJic": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ReadLambdaFunction"
         },
-        "CodeSha256": "wH9IsYxSW1M4SL1fUQIFa5kwhO34+FwcaNm/t7VZmGs="
+        "CodeSha256": "QrGr1jkB8I19J5S2cI2Vj7nP29cYK5JG3SegozUglxo="
       }
     },
     "UpdateLambdaFunction": {
@@ -435,7 +566,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/sls-shopping-list/dev/1607385868319-2020-12-08T00:04:28.319Z/sls-shopping-list.zip"
+          "S3Key": "serverless/sls-shopping-list/dev/1607412940879-2020-12-08T07:35:40.879Z/sls-shopping-list.zip"
         },
         "Handler": "shopping/update.update",
         "Runtime": "nodejs12.x",
@@ -447,7 +578,19 @@
             "DYNAMODB_TABLE": "dev-sls-shopping-list",
             "TWILIO_SID": "AC606592bd99432da0da33e8c41dddf976",
             "TWILIO_AUTH": "4c699ee06c9d1923313c5e5d4f7c02cd",
-            "TWILIO_PHONE": "12512774931"
+            "TWILIO_PHONE": "12512774931",
+            "URL": {
+              "Fn::Join": [
+                "",
+                [
+                  " https://",
+                  {
+                    "Ref": "ApiGatewayRestApi"
+                  },
+                  ".execute-api.us-east-1.amazonaws.com/dev"
+                ]
+              ]
+            }
           }
         },
         "Role": {
@@ -461,14 +604,14 @@
         "UpdateLogGroup"
       ]
     },
-    "UpdateLambdaVersionJM5s1i8tZmGT43Zb38fFGNf32MLN7FvEZ71jmw6oFs": {
+    "UpdateLambdaVersiondPXeiTqKEa3g68dv6JMOc5aA8KKoaBmRHb1Fq4fw": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "UpdateLambdaFunction"
         },
-        "CodeSha256": "wH9IsYxSW1M4SL1fUQIFa5kwhO34+FwcaNm/t7VZmGs="
+        "CodeSha256": "QrGr1jkB8I19J5S2cI2Vj7nP29cYK5JG3SegozUglxo="
       }
     },
     "DeleteLambdaFunction": {
@@ -478,7 +621,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/sls-shopping-list/dev/1607385868319-2020-12-08T00:04:28.319Z/sls-shopping-list.zip"
+          "S3Key": "serverless/sls-shopping-list/dev/1607412940879-2020-12-08T07:35:40.879Z/sls-shopping-list.zip"
         },
         "Handler": "shopping/delete.delete",
         "Runtime": "nodejs12.x",
@@ -490,7 +633,19 @@
             "DYNAMODB_TABLE": "dev-sls-shopping-list",
             "TWILIO_SID": "AC606592bd99432da0da33e8c41dddf976",
             "TWILIO_AUTH": "4c699ee06c9d1923313c5e5d4f7c02cd",
-            "TWILIO_PHONE": "12512774931"
+            "TWILIO_PHONE": "12512774931",
+            "URL": {
+              "Fn::Join": [
+                "",
+                [
+                  " https://",
+                  {
+                    "Ref": "ApiGatewayRestApi"
+                  },
+                  ".execute-api.us-east-1.amazonaws.com/dev"
+                ]
+              ]
+            }
           }
         },
         "Role": {
@@ -504,14 +659,70 @@
         "DeleteLogGroup"
       ]
     },
-    "DeleteLambdaVersionGFoxDsqSgBHeDlXXHXxHtwjcXJOswyF8KkwKsf6hiPs": {
+    "DeleteLambdaVersionBxCp0qfGR4ovrgnqtOEhcvTf8FAGJe9lPAkMOzyA": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "DeleteLambdaFunction"
         },
-        "CodeSha256": "wH9IsYxSW1M4SL1fUQIFa5kwhO34+FwcaNm/t7VZmGs="
+        "CodeSha256": "QrGr1jkB8I19J5S2cI2Vj7nP29cYK5JG3SegozUglxo="
+      }
+    },
+    "ImportLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "S3Key": "serverless/sls-shopping-list/dev/1607412940879-2020-12-08T07:35:40.879Z/sls-shopping-list.zip"
+        },
+        "Handler": "shopping/import.import",
+        "Runtime": "nodejs12.x",
+        "FunctionName": "sls-shopping-list-dev-import",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Environment": {
+          "Variables": {
+            "DYNAMODB_TABLE": "dev-sls-shopping-list",
+            "TWILIO_SID": "AC606592bd99432da0da33e8c41dddf976",
+            "TWILIO_AUTH": "4c699ee06c9d1923313c5e5d4f7c02cd",
+            "TWILIO_PHONE": "12512774931",
+            "URL": {
+              "Fn::Join": [
+                "",
+                [
+                  " https://",
+                  {
+                    "Ref": "ApiGatewayRestApi"
+                  },
+                  ".execute-api.us-east-1.amazonaws.com/dev"
+                ]
+              ]
+            },
+            "BUCKET": "sls-shopping-list"
+          }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "ImportLogGroup"
+      ]
+    },
+    "ImportLambdaVersion0K95XT6SqRYZR8jAbT5Mec8AUg9GXCA0wQN6GjqM2I": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "ImportLambdaFunction"
+        },
+        "CodeSha256": "QrGr1jkB8I19J5S2cI2Vj7nP29cYK5JG3SegozUglxo="
       }
     },
     "S3putLambdaFunction": {
@@ -521,7 +732,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/sls-shopping-list/dev/1607385868319-2020-12-08T00:04:28.319Z/sls-shopping-list.zip"
+          "S3Key": "serverless/sls-shopping-list/dev/1607412940879-2020-12-08T07:35:40.879Z/sls-shopping-list.zip"
         },
         "Handler": "s3/put.put",
         "Runtime": "nodejs12.x",
@@ -534,7 +745,19 @@
             "TWILIO_SID": "AC606592bd99432da0da33e8c41dddf976",
             "TWILIO_AUTH": "4c699ee06c9d1923313c5e5d4f7c02cd",
             "TWILIO_PHONE": "12512774931",
-            "BUCKET": "shopping-list-bucket"
+            "URL": {
+              "Fn::Join": [
+                "",
+                [
+                  " https://",
+                  {
+                    "Ref": "ApiGatewayRestApi"
+                  },
+                  ".execute-api.us-east-1.amazonaws.com/dev"
+                ]
+              ]
+            },
+            "BUCKET": "sls-shopping-list"
           }
         },
         "Role": {
@@ -548,14 +771,14 @@
         "S3putLogGroup"
       ]
     },
-    "S3putLambdaVersionT8ZOXpXRHw1btLTAc6Q1gBAffhzwtcoTKarx604JcM": {
+    "S3putLambdaVersionAc41JGQCvX1Mo1UP7vLO0GHfgj10Ldu02NRBEqn4": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "S3putLambdaFunction"
         },
-        "CodeSha256": "wH9IsYxSW1M4SL1fUQIFa5kwhO34+FwcaNm/t7VZmGs="
+        "CodeSha256": "QrGr1jkB8I19J5S2cI2Vj7nP29cYK5JG3SegozUglxo="
       }
     },
     "ApiGatewayRestApi": {
@@ -631,6 +854,33 @@
           "Ref": "ApiGatewayResourceShopping"
         },
         "PathPart": "{id}",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayResourceShoppingImport": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Ref": "ApiGatewayResourceShopping"
+        },
+        "PathPart": "import",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayResourceClear": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Fn::GetAtt": [
+            "ApiGatewayRestApi",
+            "RootResourceId"
+          ]
+        },
+        "PathPart": "clear",
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
         }
@@ -726,6 +976,51 @@
         }
       }
     },
+    "ApiGatewayMethodClearOptions": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "MethodResponses": [
+          {
+            "StatusCode": "200",
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true
+            },
+            "ResponseModels": {}
+          }
+        ],
+        "RequestParameters": {},
+        "Integration": {
+          "Type": "MOCK",
+          "RequestTemplates": {
+            "application/json": "{statusCode:200}"
+          },
+          "ContentHandling": "CONVERT_TO_TEXT",
+          "IntegrationResponses": [
+            {
+              "StatusCode": "200",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'"
+              },
+              "ResponseTemplates": {
+                "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".+\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
+              }
+            }
+          ]
+        },
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceClear"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
     "ApiGatewayMethodShoppingIdVarOptions": {
       "Type": "AWS::ApiGateway::Method",
       "Properties": {
@@ -765,6 +1060,51 @@
         },
         "ResourceId": {
           "Ref": "ApiGatewayResourceShoppingIdVar"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayMethodShoppingImportOptions": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "MethodResponses": [
+          {
+            "StatusCode": "200",
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true
+            },
+            "ResponseModels": {}
+          }
+        ],
+        "RequestParameters": {},
+        "Integration": {
+          "Type": "MOCK",
+          "RequestTemplates": {
+            "application/json": "{statusCode:200}"
+          },
+          "ContentHandling": "CONVERT_TO_TEXT",
+          "IntegrationResponses": [
+            {
+              "StatusCode": "200",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET'"
+              },
+              "ResponseTemplates": {
+                "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".+\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
+              }
+            }
+          ]
+        },
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceShoppingImport"
         },
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
@@ -1193,6 +1533,49 @@
         "MethodResponses": []
       }
     },
+    "ApiGatewayMethodClearPost": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "POST",
+        "RequestParameters": {},
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceClear"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "ClearLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        },
+        "MethodResponses": []
+      }
+    },
     "ApiGatewayMethodShoppingIdVarGet": {
       "Type": "AWS::ApiGateway::Method",
       "Properties": {
@@ -1322,7 +1705,50 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1607385863990": {
+    "ApiGatewayMethodShoppingImportGet": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "GET",
+        "RequestParameters": {},
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceShoppingImport"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "ImportLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        },
+        "MethodResponses": []
+      }
+    },
+    "ApiGatewayDeployment1607412936540": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -1333,14 +1759,18 @@
       "DependsOn": [
         "ApiGatewayMethodApiSendtextOptions",
         "ApiGatewayMethodShoppingOptions",
+        "ApiGatewayMethodClearOptions",
         "ApiGatewayMethodShoppingIdVarOptions",
+        "ApiGatewayMethodShoppingImportOptions",
         "ApiGatewayMethodApiSendtextPost",
         "ApiGatewayMethodApiReceivetextPost",
         "ApiGatewayMethodShoppingPost",
         "ApiGatewayMethodShoppingGet",
+        "ApiGatewayMethodClearPost",
         "ApiGatewayMethodShoppingIdVarGet",
         "ApiGatewayMethodShoppingIdVarPut",
-        "ApiGatewayMethodShoppingIdVarDelete"
+        "ApiGatewayMethodShoppingIdVarDelete",
+        "ApiGatewayMethodShoppingImportGet"
       ]
     },
     "SendTextLambdaPermissionApiGateway": {
@@ -1491,6 +1921,43 @@
         }
       }
     },
+    "ClearLambdaPermissionApiGateway": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "ClearLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "/*/*"
+            ]
+          ]
+        }
+      }
+    },
     "ReadLambdaPermissionApiGateway": {
       "Type": "AWS::Lambda::Permission",
       "Properties": {
@@ -1602,6 +2069,43 @@
         }
       }
     },
+    "ImportLambdaPermissionApiGateway": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "ImportLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "/*/*"
+            ]
+          ]
+        }
+      }
+    },
     "NewResource": {
       "Type": "AWS::S3::Bucket",
       "Properties": {
@@ -1641,49 +2145,61 @@
     "SendTextLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "SendTextLambdaVersionsxY7JMcdYnM4bLaCJu3smz6R7Wqkq5SmWJuZcKLBDw"
+        "Ref": "SendTextLambdaVersion1bbwlL2mxXMGqkko3W7zxNQRZMktlbM35jKXH64"
       }
     },
     "ReceiveTextLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ReceiveTextLambdaVersionpQQGJWpDv7mQdh57TRsLSsvFK7PM55Mu8nVhlCOI"
+        "Ref": "ReceiveTextLambdaVersion9QxcyCpfRc1HAMk2s4ivf2bnecKafPkkw9bevd8"
       }
     },
     "CreateLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "CreateLambdaVersionJv14er5FMey8ddD5Hby5P04yUL6l8oLdF8e4tCUR4"
+        "Ref": "CreateLambdaVersion6YiVy1NgrfVxLarXqfX0VLRgVRhz3T1gpk596q2JVk"
       }
     },
     "ListLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ListLambdaVersionqLH2GRTWJPAkIKGSYJsA3F3BBwI9Lz8wI6XQW0bfc"
+        "Ref": "ListLambdaVersionSw2Td4dFU2BLBkgW9GQrZcYChZ2X2hH2k3ahKPQiXnc"
+      }
+    },
+    "ClearLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "ClearLambdaVersionOEK8sIPNsB4dNhZt3hoU87n4D9B6TgTxLvrguyWQnw"
       }
     },
     "ReadLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ReadLambdaVersionBdcCULISRpANrIs8pK87QCM3j3xgq2K8Utn8VNBpapk"
+        "Ref": "ReadLambdaVersionCaqQga4nRMdGhEGOpIh3gWj35HDbfac9gfyR2iHJic"
       }
     },
     "UpdateLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "UpdateLambdaVersionJM5s1i8tZmGT43Zb38fFGNf32MLN7FvEZ71jmw6oFs"
+        "Ref": "UpdateLambdaVersiondPXeiTqKEa3g68dv6JMOc5aA8KKoaBmRHb1Fq4fw"
       }
     },
     "DeleteLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "DeleteLambdaVersionGFoxDsqSgBHeDlXXHXxHtwjcXJOswyF8KkwKsf6hiPs"
+        "Ref": "DeleteLambdaVersionBxCp0qfGR4ovrgnqtOEhcvTf8FAGJe9lPAkMOzyA"
+      }
+    },
+    "ImportLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "ImportLambdaVersion0K95XT6SqRYZR8jAbT5Mec8AUg9GXCA0wQN6GjqM2I"
       }
     },
     "S3putLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "S3putLambdaVersionT8ZOXpXRHw1btLTAc6Q1gBAffhzwtcoTKarx604JcM"
+        "Ref": "S3putLambdaVersionAc41JGQCvX1Mo1UP7vLO0GHfgj10Ldu02NRBEqn4"
       }
     },
     "ServiceEndpoint": {

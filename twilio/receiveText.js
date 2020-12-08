@@ -5,7 +5,8 @@ module.exports.receiveText = async (event, context, callback) => {
 	const command = event.body.Body;
 	const from = event.body.From;
 	if (typeof command === 'string') {
-		const parts = command.trim().split(' ');
+        const parts = command.trim().split(' ');
+        console.log('parts: ', parts);
 		switch (parts[0].toUpperCase()) {
 			case 'LIST':
                 console.log("Should list shopping items");
@@ -25,7 +26,8 @@ module.exports.receiveText = async (event, context, callback) => {
 						to: from,
 						message
 					})
-				};
+                };
+                console.log('Send options: ', sendOptions);
 				const sent = await fetch(`${base}/api/sendText`, sendOptions).then((res) => {
 					return res.json();
 				})

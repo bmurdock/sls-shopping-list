@@ -3,6 +3,7 @@ const twilioSid = process.env.TWILIO_SID;
 const twilioAuthToken = process.env.TWILIO_AUTH;
 const twilioClient = require('twilio')(twilioSid, twilioAuthToken); // eslint-disable-line
 module.exports.sendText = (event, context, callback) => {
+    console.log('Attempting to send Twilio SMSL ', event);
 	const messenger = new Messenger(twilioClient);
 	const response = {
 		headers: {

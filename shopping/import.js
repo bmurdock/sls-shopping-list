@@ -1,3 +1,4 @@
+// import list.json from the S3 bucket
 const fetch = require('node-fetch');
 const uuid = require('uuid');
 const AWS = require('aws-sdk');

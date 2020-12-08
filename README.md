@@ -58,3 +58,11 @@ You can add multiple items at once using a comma-seperated list:
 ```
 Add 1 gallon of milk,Captain Crunch,2 Packages of Peanut Butter M&Ms
 ```
+#### Clear
+Clear will clear all items off the current shopping list.
+
+## Future Development
+When interfacing via SMS, commands are rather clunky. However, the DynamoDB collection allows for a checklist style of shopping list. If you were to interface via HTML, React, or even a native phone app, you could support deleting single items, checking items as you place them in the cart, etc.
+
+### Note On SMS
+Anyone who sends commands to the Twilio number can interact with the list. Multiple people can add items, or get the current list.

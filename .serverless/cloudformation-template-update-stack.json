@@ -236,7 +236,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/sls-shopping-list/dev/1607414439621-2020-12-08T08:00:39.621Z/sls-shopping-list.zip"
+          "S3Key": "serverless/sls-shopping-list/dev/1607416622686-2020-12-08T08:37:02.686Z/sls-shopping-list.zip"
         },
         "Handler": "twilio/sendText.sendText",
         "Runtime": "nodejs12.x",
@@ -247,7 +247,7 @@
           "Variables": {
             "DYNAMODB_TABLE": "dev-sls-shopping-list",
             "TWILIO_SID": "AC606592bd99432da0da33e8c41dddf976",
-            "TWILIO_AUTH": "4c699ee06c9d1923313c5e5d4f7c02cd",
+            "TWILIO_AUTH": "a78b53c177eca36a9e68f70545345b58",
             "TWILIO_PHONE": "12512774931",
             "URL": {
               "Fn::Join": [
@@ -274,14 +274,14 @@
         "SendTextLogGroup"
       ]
     },
-    "SendTextLambdaVersionByDbnybsGgwSXK2FdSvNxXELOjxRixGQ7Hr6AD8po": {
+    "SendTextLambdaVersionRj6EFZ92y0Mbq0wEdm4Elq4watpYTEZkEPmlLShS2kI": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "SendTextLambdaFunction"
         },
-        "CodeSha256": "lZU78K4c+8J9V4ceoHKhB4zgYUDvL4yFg8Y9UChmTNI="
+        "CodeSha256": "0qj9EXxnqZ+5SM+mtKoDCNdJpHb34YBY0IKv9TAJbIg="
       }
     },
     "ReceiveTextLambdaFunction": {
@@ -291,7 +291,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/sls-shopping-list/dev/1607414439621-2020-12-08T08:00:39.621Z/sls-shopping-list.zip"
+          "S3Key": "serverless/sls-shopping-list/dev/1607416622686-2020-12-08T08:37:02.686Z/sls-shopping-list.zip"
         },
         "Handler": "twilio/receiveText.receiveText",
         "Runtime": "nodejs12.x",
@@ -302,7 +302,7 @@
           "Variables": {
             "DYNAMODB_TABLE": "dev-sls-shopping-list",
             "TWILIO_SID": "AC606592bd99432da0da33e8c41dddf976",
-            "TWILIO_AUTH": "4c699ee06c9d1923313c5e5d4f7c02cd",
+            "TWILIO_AUTH": "a78b53c177eca36a9e68f70545345b58",
             "TWILIO_PHONE": "12512774931",
             "URL": {
               "Fn::Join": [
@@ -329,14 +329,14 @@
         "ReceiveTextLogGroup"
       ]
     },
-    "ReceiveTextLambdaVersionaI2XXcNaCSSC1Vsz9mlkfA4zO2n0YK6hQFwMg95sY4": {
+    "ReceiveTextLambdaVersionGscr3u2naSYwTZk6dZCQDEt0FCh3AM3uNVLGoEvo": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ReceiveTextLambdaFunction"
         },
-        "CodeSha256": "lZU78K4c+8J9V4ceoHKhB4zgYUDvL4yFg8Y9UChmTNI="
+        "CodeSha256": "0qj9EXxnqZ+5SM+mtKoDCNdJpHb34YBY0IKv9TAJbIg="
       }
     },
     "CreateLambdaFunction": {
@@ -346,7 +346,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/sls-shopping-list/dev/1607414439621-2020-12-08T08:00:39.621Z/sls-shopping-list.zip"
+          "S3Key": "serverless/sls-shopping-list/dev/1607416622686-2020-12-08T08:37:02.686Z/sls-shopping-list.zip"
         },
         "Handler": "shopping/create.create",
         "Runtime": "nodejs12.x",
@@ -357,7 +357,7 @@
           "Variables": {
             "DYNAMODB_TABLE": "dev-sls-shopping-list",
             "TWILIO_SID": "AC606592bd99432da0da33e8c41dddf976",
-            "TWILIO_AUTH": "4c699ee06c9d1923313c5e5d4f7c02cd",
+            "TWILIO_AUTH": "a78b53c177eca36a9e68f70545345b58",
             "TWILIO_PHONE": "12512774931",
             "URL": {
               "Fn::Join": [
@@ -384,14 +384,14 @@
         "CreateLogGroup"
       ]
     },
-    "CreateLambdaVersionKbZYMHn4T7FH075nzR2pRCFBVDFsAAFhCYuGF6dWnCY": {
+    "CreateLambdaVersion3F1tF594DJCfM9ZYf07SAucUaogtyBrP5G1ZJb9dw": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "CreateLambdaFunction"
         },
-        "CodeSha256": "lZU78K4c+8J9V4ceoHKhB4zgYUDvL4yFg8Y9UChmTNI="
+        "CodeSha256": "0qj9EXxnqZ+5SM+mtKoDCNdJpHb34YBY0IKv9TAJbIg="
       }
     },
     "ListLambdaFunction": {
@@ -401,7 +401,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/sls-shopping-list/dev/1607414439621-2020-12-08T08:00:39.621Z/sls-shopping-list.zip"
+          "S3Key": "serverless/sls-shopping-list/dev/1607416622686-2020-12-08T08:37:02.686Z/sls-shopping-list.zip"
         },
         "Handler": "shopping/list.list",
         "Runtime": "nodejs12.x",
@@ -412,7 +412,7 @@
           "Variables": {
             "DYNAMODB_TABLE": "dev-sls-shopping-list",
             "TWILIO_SID": "AC606592bd99432da0da33e8c41dddf976",
-            "TWILIO_AUTH": "4c699ee06c9d1923313c5e5d4f7c02cd",
+            "TWILIO_AUTH": "a78b53c177eca36a9e68f70545345b58",
             "TWILIO_PHONE": "12512774931",
             "URL": {
               "Fn::Join": [
@@ -439,14 +439,14 @@
         "ListLogGroup"
       ]
     },
-    "ListLambdaVersionLDrHAd69Ggy2P8VaOVowNgp9mQZ6sivlGoonOEJA": {
+    "ListLambdaVersionyuiWucbFE5S1hHIArnCaCvHrl9z1wJkrUYksuvJe8": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ListLambdaFunction"
         },
-        "CodeSha256": "lZU78K4c+8J9V4ceoHKhB4zgYUDvL4yFg8Y9UChmTNI="
+        "CodeSha256": "0qj9EXxnqZ+5SM+mtKoDCNdJpHb34YBY0IKv9TAJbIg="
       }
     },
     "ClearLambdaFunction": {
@@ -456,7 +456,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/sls-shopping-list/dev/1607414439621-2020-12-08T08:00:39.621Z/sls-shopping-list.zip"
+          "S3Key": "serverless/sls-shopping-list/dev/1607416622686-2020-12-08T08:37:02.686Z/sls-shopping-list.zip"
         },
         "Handler": "shopping/clear.clear",
         "Runtime": "nodejs12.x",
@@ -467,7 +467,7 @@
           "Variables": {
             "DYNAMODB_TABLE": "dev-sls-shopping-list",
             "TWILIO_SID": "AC606592bd99432da0da33e8c41dddf976",
-            "TWILIO_AUTH": "4c699ee06c9d1923313c5e5d4f7c02cd",
+            "TWILIO_AUTH": "a78b53c177eca36a9e68f70545345b58",
             "TWILIO_PHONE": "12512774931",
             "URL": {
               "Fn::Join": [
@@ -494,14 +494,14 @@
         "ClearLogGroup"
       ]
     },
-    "ClearLambdaVersionPbVIsHtM32kdBEND44CV5Lx5aUgo1i1UII3AjwIs": {
+    "ClearLambdaVersionQ61Dbzt7cvrIry8rin4gButwjU2Vc5bFUrkAknzqs": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ClearLambdaFunction"
         },
-        "CodeSha256": "lZU78K4c+8J9V4ceoHKhB4zgYUDvL4yFg8Y9UChmTNI="
+        "CodeSha256": "0qj9EXxnqZ+5SM+mtKoDCNdJpHb34YBY0IKv9TAJbIg="
       }
     },
     "ReadLambdaFunction": {
@@ -511,7 +511,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/sls-shopping-list/dev/1607414439621-2020-12-08T08:00:39.621Z/sls-shopping-list.zip"
+          "S3Key": "serverless/sls-shopping-list/dev/1607416622686-2020-12-08T08:37:02.686Z/sls-shopping-list.zip"
         },
         "Handler": "shopping/read.read",
         "Runtime": "nodejs12.x",
@@ -522,7 +522,7 @@
           "Variables": {
             "DYNAMODB_TABLE": "dev-sls-shopping-list",
             "TWILIO_SID": "AC606592bd99432da0da33e8c41dddf976",
-            "TWILIO_AUTH": "4c699ee06c9d1923313c5e5d4f7c02cd",
+            "TWILIO_AUTH": "a78b53c177eca36a9e68f70545345b58",
             "TWILIO_PHONE": "12512774931",
             "URL": {
               "Fn::Join": [
@@ -549,14 +549,14 @@
         "ReadLogGroup"
       ]
     },
-    "ReadLambdaVersionG0pJL7GJvyEM8jK2HOolxD6QK3WIhWRKlHHC8RzxWU": {
+    "ReadLambdaVersionwPJVqpHQYELYJZfSiILKkT2CMLdwBEt7nwXcQXev04I": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ReadLambdaFunction"
         },
-        "CodeSha256": "lZU78K4c+8J9V4ceoHKhB4zgYUDvL4yFg8Y9UChmTNI="
+        "CodeSha256": "0qj9EXxnqZ+5SM+mtKoDCNdJpHb34YBY0IKv9TAJbIg="
       }
     },
     "UpdateLambdaFunction": {
@@ -566,7 +566,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/sls-shopping-list/dev/1607414439621-2020-12-08T08:00:39.621Z/sls-shopping-list.zip"
+          "S3Key": "serverless/sls-shopping-list/dev/1607416622686-2020-12-08T08:37:02.686Z/sls-shopping-list.zip"
         },
         "Handler": "shopping/update.update",
         "Runtime": "nodejs12.x",
@@ -577,7 +577,7 @@
           "Variables": {
             "DYNAMODB_TABLE": "dev-sls-shopping-list",
             "TWILIO_SID": "AC606592bd99432da0da33e8c41dddf976",
-            "TWILIO_AUTH": "4c699ee06c9d1923313c5e5d4f7c02cd",
+            "TWILIO_AUTH": "a78b53c177eca36a9e68f70545345b58",
             "TWILIO_PHONE": "12512774931",
             "URL": {
               "Fn::Join": [
@@ -604,14 +604,14 @@
         "UpdateLogGroup"
       ]
     },
-    "UpdateLambdaVersionTgvgPDC63uPlZbIhiNzrqUhOrxFw01Tk2UjvniO6Ts": {
+    "UpdateLambdaVersionx0ZgdizbFaVjKajVTYs2HCrqbwRPu0Yr0KZqZHiZ6E": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "UpdateLambdaFunction"
         },
-        "CodeSha256": "lZU78K4c+8J9V4ceoHKhB4zgYUDvL4yFg8Y9UChmTNI="
+        "CodeSha256": "0qj9EXxnqZ+5SM+mtKoDCNdJpHb34YBY0IKv9TAJbIg="
       }
     },
     "DeleteLambdaFunction": {
@@ -621,7 +621,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/sls-shopping-list/dev/1607414439621-2020-12-08T08:00:39.621Z/sls-shopping-list.zip"
+          "S3Key": "serverless/sls-shopping-list/dev/1607416622686-2020-12-08T08:37:02.686Z/sls-shopping-list.zip"
         },
         "Handler": "shopping/delete.delete",
         "Runtime": "nodejs12.x",
@@ -632,7 +632,7 @@
           "Variables": {
             "DYNAMODB_TABLE": "dev-sls-shopping-list",
             "TWILIO_SID": "AC606592bd99432da0da33e8c41dddf976",
-            "TWILIO_AUTH": "4c699ee06c9d1923313c5e5d4f7c02cd",
+            "TWILIO_AUTH": "a78b53c177eca36a9e68f70545345b58",
             "TWILIO_PHONE": "12512774931",
             "URL": {
               "Fn::Join": [
@@ -659,14 +659,14 @@
         "DeleteLogGroup"
       ]
     },
-    "DeleteLambdaVersionbLaGhy7LyojxGCzNjVfzzAq5zf2gTVGvkOHg6lyfUs": {
+    "DeleteLambdaVersionD5E1mgHLUChBvmhxhEXnAnYvdcHoxSub8s7cIAqkKE": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "DeleteLambdaFunction"
         },
-        "CodeSha256": "lZU78K4c+8J9V4ceoHKhB4zgYUDvL4yFg8Y9UChmTNI="
+        "CodeSha256": "0qj9EXxnqZ+5SM+mtKoDCNdJpHb34YBY0IKv9TAJbIg="
       }
     },
     "ImportLambdaFunction": {
@@ -676,7 +676,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/sls-shopping-list/dev/1607414439621-2020-12-08T08:00:39.621Z/sls-shopping-list.zip"
+          "S3Key": "serverless/sls-shopping-list/dev/1607416622686-2020-12-08T08:37:02.686Z/sls-shopping-list.zip"
         },
         "Handler": "shopping/import.import",
         "Runtime": "nodejs12.x",
@@ -687,7 +687,7 @@
           "Variables": {
             "DYNAMODB_TABLE": "dev-sls-shopping-list",
             "TWILIO_SID": "AC606592bd99432da0da33e8c41dddf976",
-            "TWILIO_AUTH": "4c699ee06c9d1923313c5e5d4f7c02cd",
+            "TWILIO_AUTH": "a78b53c177eca36a9e68f70545345b58",
             "TWILIO_PHONE": "12512774931",
             "URL": {
               "Fn::Join": [
@@ -715,14 +715,14 @@
         "ImportLogGroup"
       ]
     },
-    "ImportLambdaVersionB4gwWQecRQBmvUQkdFOlBgd5mhLoNmhTPtrG6wHNw": {
+    "ImportLambdaVersionchBwqIP2KprSGodQnAjOIk4ezGV7lr5nGLKvLVkQO8": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ImportLambdaFunction"
         },
-        "CodeSha256": "lZU78K4c+8J9V4ceoHKhB4zgYUDvL4yFg8Y9UChmTNI="
+        "CodeSha256": "0qj9EXxnqZ+5SM+mtKoDCNdJpHb34YBY0IKv9TAJbIg="
       }
     },
     "S3putLambdaFunction": {
@@ -732,7 +732,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/sls-shopping-list/dev/1607414439621-2020-12-08T08:00:39.621Z/sls-shopping-list.zip"
+          "S3Key": "serverless/sls-shopping-list/dev/1607416622686-2020-12-08T08:37:02.686Z/sls-shopping-list.zip"
         },
         "Handler": "s3/put.put",
         "Runtime": "nodejs12.x",
@@ -743,7 +743,7 @@
           "Variables": {
             "DYNAMODB_TABLE": "dev-sls-shopping-list",
             "TWILIO_SID": "AC606592bd99432da0da33e8c41dddf976",
-            "TWILIO_AUTH": "4c699ee06c9d1923313c5e5d4f7c02cd",
+            "TWILIO_AUTH": "a78b53c177eca36a9e68f70545345b58",
             "TWILIO_PHONE": "12512774931",
             "URL": {
               "Fn::Join": [
@@ -771,14 +771,14 @@
         "S3putLogGroup"
       ]
     },
-    "S3putLambdaVersion9mHwHBNFiYF8rS5w8ykXciQBL72FqeoQsxxb2Fmawo": {
+    "S3putLambdaVersionU0FlL2FXwhh1VoYH6gJqa0LMs4tmHhoweIuBj8qYo5A": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "S3putLambdaFunction"
         },
-        "CodeSha256": "lZU78K4c+8J9V4ceoHKhB4zgYUDvL4yFg8Y9UChmTNI="
+        "CodeSha256": "0qj9EXxnqZ+5SM+mtKoDCNdJpHb34YBY0IKv9TAJbIg="
       }
     },
     "ApiGatewayRestApi": {
@@ -1748,7 +1748,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1607414435221": {
+    "ApiGatewayDeployment1607416618289": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -2145,61 +2145,61 @@
     "SendTextLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "SendTextLambdaVersionByDbnybsGgwSXK2FdSvNxXELOjxRixGQ7Hr6AD8po"
+        "Ref": "SendTextLambdaVersionRj6EFZ92y0Mbq0wEdm4Elq4watpYTEZkEPmlLShS2kI"
       }
     },
     "ReceiveTextLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ReceiveTextLambdaVersionaI2XXcNaCSSC1Vsz9mlkfA4zO2n0YK6hQFwMg95sY4"
+        "Ref": "ReceiveTextLambdaVersionGscr3u2naSYwTZk6dZCQDEt0FCh3AM3uNVLGoEvo"
       }
     },
     "CreateLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "CreateLambdaVersionKbZYMHn4T7FH075nzR2pRCFBVDFsAAFhCYuGF6dWnCY"
+        "Ref": "CreateLambdaVersion3F1tF594DJCfM9ZYf07SAucUaogtyBrP5G1ZJb9dw"
       }
     },
     "ListLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ListLambdaVersionLDrHAd69Ggy2P8VaOVowNgp9mQZ6sivlGoonOEJA"
+        "Ref": "ListLambdaVersionyuiWucbFE5S1hHIArnCaCvHrl9z1wJkrUYksuvJe8"
       }
     },
     "ClearLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ClearLambdaVersionPbVIsHtM32kdBEND44CV5Lx5aUgo1i1UII3AjwIs"
+        "Ref": "ClearLambdaVersionQ61Dbzt7cvrIry8rin4gButwjU2Vc5bFUrkAknzqs"
       }
     },
     "ReadLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ReadLambdaVersionG0pJL7GJvyEM8jK2HOolxD6QK3WIhWRKlHHC8RzxWU"
+        "Ref": "ReadLambdaVersionwPJVqpHQYELYJZfSiILKkT2CMLdwBEt7nwXcQXev04I"
       }
     },
     "UpdateLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "UpdateLambdaVersionTgvgPDC63uPlZbIhiNzrqUhOrxFw01Tk2UjvniO6Ts"
+        "Ref": "UpdateLambdaVersionx0ZgdizbFaVjKajVTYs2HCrqbwRPu0Yr0KZqZHiZ6E"
       }
     },
     "DeleteLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "DeleteLambdaVersionbLaGhy7LyojxGCzNjVfzzAq5zf2gTVGvkOHg6lyfUs"
+        "Ref": "DeleteLambdaVersionD5E1mgHLUChBvmhxhEXnAnYvdcHoxSub8s7cIAqkKE"
       }
     },
     "ImportLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ImportLambdaVersionB4gwWQecRQBmvUQkdFOlBgd5mhLoNmhTPtrG6wHNw"
+        "Ref": "ImportLambdaVersionchBwqIP2KprSGodQnAjOIk4ezGV7lr5nGLKvLVkQO8"
       }
     },
     "S3putLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "S3putLambdaVersion9mHwHBNFiYF8rS5w8ykXciQBL72FqeoQsxxb2Fmawo"
+        "Ref": "S3putLambdaVersionU0FlL2FXwhh1VoYH6gJqa0LMs4tmHhoweIuBj8qYo5A"
       }
     },
     "ServiceEndpoint": {

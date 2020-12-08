@@ -3,10 +3,9 @@ const fetch = require('node-fetch');
 module.exports.receiveText = async (event, context, callback) => {
 	const base = process.env.URL;
 	const command = event.body.Body;
-	const from = event.body.From;
+	const from = event.body.From.slice(event.body.From.length - 10);
 	if (typeof command === 'string') {
         const parts = command.trim().split(' ');
-        console.log('parts: ', parts);
 		switch (parts[0].toUpperCase()) {
 			case 'LIST':
                 console.log("Should list shopping items");
@@ -34,6 +33,7 @@ module.exports.receiveText = async (event, context, callback) => {
 				callback(null, sent);
 				break;
 			case 'ADD':
+                console.log('Should add items to the shopping list...');
 				parts.shift();
 				const items = parts.join(' ').split(',');
 				const batch = items.map((item) => {

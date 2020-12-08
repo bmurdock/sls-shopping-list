@@ -7,9 +7,9 @@ provider:
   region: us-east-1
   environment:
     DYNAMODB_TABLE: ${opt:stage, self:provider.stage}-${self:service}
-    TWILIO_SID: AC606592bd99432da0da33e8c41dddf976
-    TWILIO_AUTH: 4c699ee06c9d1923313c5e5d4f7c02cd
-    TWILIO_PHONE: 12512774931
+    TWILIO_SID: <YOUR SID>
+    TWILIO_AUTH: <YOUR AUTH>
+    TWILIO_PHONE: <YOUR PHONE>
     URL: { "Fn::Join" : ["", [" https://", { "Ref" : "ApiGatewayRestApi" }, ".execute-api.${self:custom.region}.amazonaws.com/${self:custom.stage}" ] ]  }
   iamRoleStatements:
     - Effect: Allow
